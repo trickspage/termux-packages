@@ -5,7 +5,7 @@ executors:
       - image: ghcr.io/termux/package-builder
 jobs:
   build-for-android:
-    executor: build-chromium
+    executor: build-package
     steps:
       - run: |
           git clone https://github.com/T-Dynamos/termux-packages ~/termux
