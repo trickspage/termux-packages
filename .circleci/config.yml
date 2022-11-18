@@ -1,6 +1,6 @@
 version: 2.1
 executors:
-  build-chromium:
+  build-package:
     docker:
       - image: ghcr.io/termux/package-builder
 jobs:
@@ -10,12 +10,14 @@ jobs:
       - run: |
           git clone https://github.com/T-Dynamos/termux-packages ~/termux
           cd ~/termux
-          ./build-package.sh -I -a aarch64 alembic && ls -l debs
+          ./build-package.sh -I -a aarch64  golang
+          ls
+          ls outup
       - store_artifacts:
-          path: ~/tur/debs/*
-          destination: chromium.deb
+          path: ~/termux/output/*.debs
+          destination: package.deb
 
 workflows:
-  build-chromium:
+  build-package:
     jobs:
       - build-for-android
